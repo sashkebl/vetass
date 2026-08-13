@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Калькуляторы — VetAss</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6f8f7;
+            color: #17211f;
+        }
+
+        header {
+            background: white;
+            border-bottom: 1px solid #e4e9e7;
+            padding: 18px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #3d8b78;
+        }
+
+        header a {
+            text-decoration: none;
+            color: #4b5754;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 70px 25px;
+        }
+
+        h1 {
+            font-size: 48px;
+            letter-spacing: -1.5px;
+        }
+
+        .subtitle {
+            margin-top: 15px;
+            color: #68736f;
+            font-size: 18px;
+        }
+
+        .calculator-grid {
+            margin-top: 45px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .calculator-card {
+            background: white;
+            border: 1px solid #e1e7e4;
+            border-radius: 18px;
+            padding: 28px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .calculator-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.07);
+        }
+
+        .icon {
+            font-size: 34px;
+            margin-bottom: 18px;
+        }
+
+        .calculator-card h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .calculator-card p {
+            color: #707b78;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .calculator {
+            display: none;
+
+            margin-top: 50px;
+
+            background: white;
+            border: 1px solid #e1e7e4;
+            border-radius: 20px;
+
+            padding: 35px;
+
+            max-width: 650px;
+        }
+
+        .calculator.active {
+            display: block;
+        }
+
+        .calculator h2 {
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 14px 16px;
+
+            border: 1px solid #d7dfdc;
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #3d8b78;
+        }
+
+        button {
+            border: none;
+
+            background: #3d8b78;
+            color: white;
+
+            padding: 14px 22px;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #327564;
+        }
+
+        .result {
+            margin-top: 25px;
+
+            background: #f0f6f3;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            display: none;
+        }
+
+        .result strong {
+            font-size: 25px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 25px;
+
+            color: #3d8b78;
+
+            cursor: pointer;
+        }
+
+        @media (max-width: 800px) {
+
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 38px;
+            }
+
+            header {
+                padding: 18px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<header>
+
+    <a href="index.html" class="logo">
+        Vet<span>Ass</span>
+    </a>
+
+    <a href="index.html">
+        ← На главную
+    </a>
+
+</header>
+
+
+<main>
+
+<div class="container">
+
+    <h1>Калькуляторы</h1>
+
+    <p class="subtitle">
+        Быстрые расчёты для ежедневной ветеринарной практики.
+    </p>
+
+
+    <div class="calculator-grid">
+
+        <div class="calculator-card" onclick="openCalculator('dose')">
+
+            <div class="icon">💊</div>
+
+            <h2>Дозировка препарата</h2>
+
+            <p>
+                Расчёт объёма препарата по массе,
+                назначенной дозе и концентрации.
+            </p>
+
+        </div>
+
+
+        <div class="calculator-card">
+
+            <div class="icon">💧</div>
+
+            <h2>Инфузия</h2>
+
+            <p>
+                Расчёт объёма и скорости инфузионной терапии.
+            </p>
+
+        </div>
+
+
+        <div class="calculator-card">
+
+            <div class="icon">🧪</div>
+
+            <h2>Разведение</h2>
+
+            <p>
+                Расчёт концентрации и необходимого объёма раствора.
+            </p>
+
+        </div>
+
+
+        <div class="calculator-card">
+
+            <div class="icon">⚕️</div>
+
+            <h2>CRI</h2>
+
+            <p>
+                Расчёт постоянной инфузии лекарственного препарата.
+            </p>
+
+        </div>
+
+
+        <div class="calculator-card">
+
+            <div class="icon">🩸</div>
+
+            <h2>Лаборатория</h2>
+
+            <p>
+                Полезные расчёты для интерпретации лабораторных данных.
+            </p>
+
+        </div>
+
+
+        <div class="calculator-card">
+
+            <div class="icon">➕</div>
+
+            <h2>Другие</h2>
+
+            <p>
+                Новые ветеринарные инструменты будут добавляться сюда.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- CALCULATOR -->
+
+
+    <div id="doseCalculator" class="calculator">
+
+        <div class="back" onclick="closeCalculator()">
+            ← Все калькуляторы
+        </div>
+
+
+        <h2>💊 Дозировка препарата</h2>
+
+
+        <div class="field">
+
+            <label>
+                Масса животного, кг
+            </label>
+
+            <input
+                id="weight"
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="Например: 4"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Назначенная доза, мг/кг
+            </label>
+
+            <input
+                id="dose"
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="Например: 0.1"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Концентрация препарата, мг/мл
+            </label>
+
+            <input
+                id="concentration"
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="Например: 5"
+            >
+
+        </div>
+
+
+        <button onclick="calculateDose()">
+            Рассчитать
+        </button>
+
+
+        <div id="doseResult" class="result">
+
+            <div>
+                Необходимая доза:
+            </div>
+
+            <strong id="mgResult">
+                —
+            </strong>
+
+            <div style="margin-top:10px;">
+                Объём препарата:
+            </div>
+
+            <strong id="mlResult">
+                —
+            </strong>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+</main>
+
+
+<script>
+
+function openCalculator(type) {
+
+    if (type === "dose") {
+
+        document.querySelector(".calculator-grid").style.display = "none";
+
+        document.getElementById("doseCalculator")
+            .classList.add("active");
+
+    }
+
+}
+
+
+function closeCalculator() {
+
+    document.querySelector(".calculator-grid").style.display = "grid";
+
+    document.getElementById("doseCalculator")
+        .classList.remove("active");
+
+}
+
+
+function calculateDose() {
+
+    const weight =
+        parseFloat(document.getElementById("weight").value);
+
+    const dose =
+        parseFloat(document.getElementById("dose").value);
+
+    const concentration =
+        parseFloat(document.getElementById("concentration").value);
+
+
+    if (
+        !weight ||
+        !dose ||
+        !concentration ||
+        weight <= 0 ||
+        dose <= 0 ||
+        concentration <= 0
+    ) {
+
+        alert("Заполните все поля корректно.");
+
+        return;
+
+    }
+
+
+    const totalMg = weight * dose;
+
+    const volumeMl = totalMg / concentration;
+
+
+    document.getElementById("mgResult")
+        .textContent =
+        totalMg.toFixed(2) + " мг";
+
+
+    document.getElementById("mlResult")
+        .textContent =
+        volumeMl.toFixed(2) + " мл";
+
+
+    document.getElementById("doseResult")
+        .style.display = "block";
+
+}
+
+</script>
+
+
+</body>
+</html>
