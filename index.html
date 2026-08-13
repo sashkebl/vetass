@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VetAss — ветеринарная платформа</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6f8f7;
+            color: #17211f;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e4e9e7;
+            padding: 18px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #3d8b78;
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4b5754;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #3d8b78;
+        }
+
+        .hero {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 90px 25px 70px;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            line-height: 1.05;
+            max-width: 750px;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            color: #3d8b78;
+        }
+
+        .hero p {
+            margin-top: 22px;
+            font-size: 19px;
+            color: #65716e;
+            max-width: 650px;
+            line-height: 1.6;
+        }
+
+        .search {
+            margin-top: 35px;
+            display: flex;
+            max-width: 700px;
+        }
+
+        .search input {
+            flex: 1;
+            padding: 17px 20px;
+            border: 1px solid #d9e1de;
+            border-radius: 12px 0 0 12px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search button {
+            padding: 17px 25px;
+            border: none;
+            background: #3d8b78;
+            color: white;
+            border-radius: 0 12px 12px 0;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .search button:hover {
+            background: #327564;
+        }
+
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 25px 80px;
+        }
+
+        .section h2 {
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e4e9e7;
+            border-radius: 16px;
+            padding: 25px;
+            min-height: 150px;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        }
+
+        .card .icon {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #707b78;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        footer {
+            border-top: 1px solid #e4e9e7;
+            padding: 30px;
+            text-align: center;
+            color: #7a8582;
+            font-size: 14px;
+        }
+
+        @media (max-width: 800px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 18px 20px;
+            }
+
+            .hero {
+                padding-top: 55px;
+            }
+
+            .search {
+                flex-direction: column;
+            }
+
+            .search input,
+            .search button {
+                border-radius: 10px;
+            }
+
+            .search button {
+                margin-top: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Vet<span>Ass</span></div>
+
+    <nav>
+        <a href="#">Калькуляторы</a>
+        <a href="#">Справочник</a>
+        <a href="#">Библиотека</a>
+        <a href="#">Рабочее пространство</a>
+    </nav>
+</header>
+
+
+<main>
+
+    <section class="hero">
+
+        <h1>
+            Всё необходимое
+            <span>ветеринару.</span>
+        </h1>
+
+        <p>
+            VetAss — рабочая платформа для ветеринарных специалистов:
+            справочники, литература, расчёты и инструменты для ежедневной работы.
+        </p>
+
+        <div class="search">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Поиск: препарат, заболевание, анализ..."
+            >
+
+            <button onclick="searchVetAss()">
+                Найти
+            </button>
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <h2>Инструменты</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">🧮</div>
+                <h3>Калькуляторы</h3>
+                <p>
+                    Дозировки, инфузии, разведения и другие расчёты.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">📖</div>
+                <h3>Справочник</h3>
+                <p>
+                    Препараты, заболевания, анализы и клинические данные.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">📚</div>
+                <h3>Библиотека</h3>
+                <p>
+                    Литература и полезные материалы для ветеринаров.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🏥</div>
+                <h3>Рабочее пространство</h3>
+                <p>
+                    Инструменты для врача и управления клиникой.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    VetAss © 2026 · Платформа для ветеринарных специалистов
+</footer>
+
+
+<script>
+
+function searchVetAss() {
+
+    const input = document.getElementById("searchInput");
+
+    const query = input.value.trim();
+
+    if (!query) {
+        alert("Введите запрос для поиска");
+        return;
+    }
+
+    alert("Поиск VetAss: " + query);
+}
+
+</script>
+
+</body>
+</html>
