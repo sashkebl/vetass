@@ -1,324 +1,774 @@
-/* Общие стили */
+/* =========================================================
+   VetAss — Design System
+   Clinical / Minimal / Professional
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+
+/* =========================
+   BRAND COLORS
+   ========================= */
+
+:root {
+    --blue: #1F5EA8;
+    --blue-dark: #174B88;
+    --blue-light: #EAF2FB;
+
+    --navy: #1A2533;
+    --text: #1A2533;
+    --text-secondary: #687280;
+
+    --teal: #2AA186;
+    --teal-light: #E9F6F2;
+
+    --violet: #6C5CE7;
+    --violet-light: #F0EEFF;
+
+    --gray-50: #F6F7F9;
+    --gray-100: #EEF0F3;
+    --gray-200: #E2E6EB;
+    --gray-300: #D4D9E0;
+
+    --white: #FFFFFF;
+
+    --shadow-sm: 0 2px 8px rgba(26, 37, 51, 0.04);
+    --shadow-md: 0 8px 24px rgba(26, 37, 51, 0.07);
+    --shadow-lg: 0 16px 40px rgba(26, 37, 51, 0.09);
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+
+    --container: 1160px;
+}
+
+
+/* =========================
+   RESET
+   ========================= */
+
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #ffffff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--gray-50);
+    color: var(--text);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Контейнер */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+a {
+    color: inherit;
 }
 
-/* Шапка */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
 header {
-    background: #ffffff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     position: sticky;
     top: 0;
-    z-index: 1000;
-    padding: 20px 0;
+    z-index: 100;
+
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid var(--gray-200);
+
+    padding: 15px 40px;
 }
 
-header .container {
+header .logo,
+.logo {
+    color: var(--navy);
+    text-decoration: none;
+
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--blue);
+}
+
+header a {
+    text-decoration: none;
+}
+
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
+nav {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-}
-
-header h1 {
-    font-size: 28px;
-    color: #0066cc;
-    font-weight: 600;
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 40px;
+    gap: 30px;
 }
 
 nav a {
-    text-decoration: none;
-    color: #333;
+    position: relative;
+
+    color: var(--text-secondary);
+    font-size: 14px;
     font-weight: 500;
-    transition: color 0.3s ease;
-    font-size: 16px;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
 }
 
 nav a:hover {
-    color: #0066cc;
+    color: var(--blue);
 }
 
-/* Главная секция */
+nav a::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: -19px;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--blue);
+
+    transition: width 0.2s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+
+/* =========================
+   HERO
+   ========================= */
+
 .hero {
-    padding: 100px 0;
-    text-align: center;
-    background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+    max-width: var(--container);
+    margin: 0 auto;
+
+    padding: 90px 30px 75px;
 }
 
-.hero h2 {
-    font-size: 48px;
-    color: #1a1a1a;
-    margin-bottom: 20px;
+.hero h1 {
+    max-width: 760px;
+
+    color: var(--navy);
+
+    font-size: clamp(42px, 5vw, 62px);
+    line-height: 1.04;
+
     font-weight: 700;
+    letter-spacing: -2.5px;
+}
+
+.hero h1 span {
+    color: var(--blue);
 }
 
 .hero p {
-    font-size: 20px;
-    color: #666;
-    margin-bottom: 40px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 650px;
+
+    margin-top: 22px;
+
+    color: var(--text-secondary);
+
+    font-size: 17px;
+    line-height: 1.65;
 }
 
-.cta-button {
-    display: inline-block;
-    padding: 16px 40px;
-    background-color: #0066cc;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
+
+/* =========================
+   SEARCH
+   ========================= */
+
+.search {
+    display: flex;
+
+    max-width: 720px;
+
+    margin-top: 32px;
+}
+
+.search input {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 15px 18px;
+
+    background: var(--white);
+
+    border: 1px solid var(--gray-300);
+    border-right: none;
+
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+
+    color: var(--text);
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: border-color 0.2s ease;
+}
+
+.search input:focus {
+    border-color: var(--blue);
+}
+
+.search input::placeholder {
+    color: #9AA2AD;
+}
+
+.search button {
+    padding: 0 24px;
+
+    border: none;
+
+    background: var(--blue);
+    color: var(--white);
+
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+
+    font-size: 14px;
     font-weight: 600;
-    font-size: 18px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,102,204,0.2);
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
-.cta-button:hover {
-    background-color: #0052a3;
+.search button:hover {
+    background: var(--blue-dark);
+}
+
+.search button:active {
+    transform: translateY(1px);
+}
+
+
+/* =========================
+   SECTIONS
+   ========================= */
+
+.section {
+    max-width: var(--container);
+    margin: 0 auto;
+
+    padding: 25px 30px 80px;
+}
+
+.section h2 {
+    margin-bottom: 24px;
+
+    color: var(--navy);
+
+    font-size: 25px;
+    font-weight: 600;
+
+    letter-spacing: -0.5px;
+}
+
+
+/* =========================
+   CARDS
+   ========================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 16px;
+}
+
+.card {
+    display: block;
+
+    min-height: 165px;
+
+    padding: 23px;
+
+    background: var(--white);
+
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+
+    color: inherit;
+    text-decoration: none;
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,102,204,0.3);
+
+    border-color: rgba(31, 94, 168, 0.35);
+
+    box-shadow: var(--shadow-md);
 }
 
-/* Секции */
-section {
-    padding: 80px 0;
+.card .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    margin-bottom: 18px;
+
+    background: var(--blue-light);
+
+    border-radius: var(--radius-md);
+
+    color: var(--blue);
+
+    font-size: 21px;
 }
 
-section h2 {
-    font-size: 36px;
-    text-align: center;
-    margin-bottom: 60px;
-    color: #1a1a1a;
+.card h3 {
+    margin-bottom: 7px;
+
+    color: var(--navy);
+
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.card p {
+    color: var(--text-secondary);
+
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+
+/* =========================
+   CALCULATORS PAGE
+   ========================= */
+
+.container {
+    max-width: var(--container);
+
+    margin: 0 auto;
+
+    padding: 65px 30px 80px;
+}
+
+.container > h1,
+h1 {
+    color: var(--navy);
+
+    font-size: 42px;
+    line-height: 1.1;
+
+    font-weight: 700;
+
+    letter-spacing: -1.5px;
+}
+
+.subtitle {
+    margin-top: 12px;
+
+    color: var(--text-secondary);
+
+    font-size: 16px;
+}
+
+
+/* =========================
+   CALCULATOR GRID
+   ========================= */
+
+.calculator-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 16px;
+
+    margin-top: 38px;
+}
+
+.calculator-card {
+    position: relative;
+
+    min-height: 170px;
+
+    padding: 24px;
+
+    background: var(--white);
+
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+
+    cursor: pointer;
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.calculator-card:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(31, 94, 168, 0.45);
+
+    box-shadow: var(--shadow-md);
+}
+
+.calculator-card:nth-child(2) .icon,
+.calculator-card:nth-child(4) .icon {
+    color: var(--teal);
+    background: var(--teal-light);
+}
+
+.calculator-card:nth-child(3) .icon,
+.calculator-card:nth-child(5) .icon {
+    color: var(--violet);
+    background: var(--violet-light);
+}
+
+.calculator-card .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    margin-bottom: 20px;
+
+    background: var(--blue-light);
+
+    border-radius: var(--radius-md);
+
+    color: var(--blue);
+
+    font-size: 22px;
+}
+
+.calculator-card h2 {
+    margin-bottom: 8px;
+
+    color: var(--navy);
+
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.calculator-card p {
+    max-width: 250px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+
+/* =========================
+   ACTIVE CALCULATOR
+   ========================= */
+
+.calculator {
+    display: none;
+
+    max-width: 760px;
+
+    margin-top: 35px;
+
+    padding: 32px;
+
+    background: var(--white);
+
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.calculator.active {
+    display: block;
+}
+
+.calculator h2 {
+    margin-bottom: 28px;
+
+    color: var(--navy);
+
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.back {
+    display: inline-block;
+
+    margin-bottom: 20px;
+
+    color: var(--blue);
+
+    font-size: 13px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+.back:hover {
+    color: var(--blue-dark);
+}
+
+
+/* =========================
+   FORM
+   ========================= */
+
+.field {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--navy);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+input,
+select {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    background: var(--white);
+
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius-sm);
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--blue);
+
+    box-shadow: 0 0 0 3px rgba(31, 94, 168, 0.10);
+}
+
+input::placeholder {
+    color: #9AA2AD;
+}
+
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+button {
+    border: none;
+
+    background: var(--blue);
+    color: var(--white);
+
+    padding: 13px 21px;
+
+    border-radius: var(--radius-sm);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+button:hover {
+    background: var(--blue-dark);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+
+/* =========================
+   CALCULATOR RESULT
+   ========================= */
+
+.result {
+    display: none;
+
+    margin-top: 24px;
+
+    padding: 20px;
+
+    background: var(--teal-light);
+
+    border: 1px solid rgba(42, 161, 134, 0.18);
+
+    border-radius: var(--radius-md);
+
+    color: var(--text);
+}
+
+.result strong {
+    display: inline-block;
+
+    margin-top: 3px;
+
+    color: var(--teal);
+
+    font-size: 24px;
     font-weight: 700;
 }
 
-/* Услуги */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
 
-.service-card {
-    background: #ffffff;
-    padding: 40px 30px;
-    border-radius: 12px;
-    text-align: center;
-    transition: all 0.3s ease;
-    border: 1px solid #e8e8e8;
-}
+/* =========================
+   FOOTER
+   ========================= */
 
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    border-color: #0066cc;
-}
-
-.service-card h3 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: #1a1a1a;
-    font-weight: 600;
-}
-
-.service-card p {
-    color: #666;
-    font-size: 16px;
-    line-height: 1.8;
-}
-
-/* Калькулятор */
-.calculator {
-    background: #f5f7fa;
-}
-
-.calculator-form {
-    max-width: 600px;
-    margin: 0 auto;
-    background: white;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-}
-
-.form-group {
-    margin-bottom: 25px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: #333;
-    font-size: 15px;
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 14px;
-    border: 2px solid #e8e8e8;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-    font-family: inherit;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: #0066cc;
-}
-
-.calculate-btn {
-    width: 100%;
-    padding: 16px;
-    background-color: #0066cc;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.calculate-btn:hover {
-    background-color: #0052a3;
-    transform: translateY(-2px);
-}
-
-#result {
-    margin-top: 30px;
-    padding: 20px;
-    background: #f5f7fa;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 600;
-    color: #0066cc;
-}
-
-/* Контакты */
-.contact {
-    background: #ffffff;
-}
-
-.contact-form {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 20px;
-    border: 2px solid #e8e8e8;
-    border-radius: 8px;
-    font-size: 16px;
-    font-family: inherit;
-    transition: border-color 0.3s ease;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-    outline: none;
-    border-color: #0066cc;
-}
-
-.contact-form textarea {
-    height: 150px;
-    resize: vertical;
-}
-
-.submit-btn {
-    width: 100%;
-    padding: 16px;
-    background-color: #0066cc;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.submit-btn:hover {
-    background-color: #0052a3;
-    transform: translateY(-2px);
-}
-
-/* Футер */
 footer {
-    background: #1a1a1a;
-    color: white;
+    margin-top: 20px;
+
+    padding: 28px 30px;
+
+    background: var(--navy);
+
+    border-top: 1px solid var(--gray-200);
+
+    color: #AEB7C2;
+
     text-align: center;
-    padding: 30px 0;
-    margin-top: 80px;
+
+    font-size: 12px;
 }
 
-footer p {
-    font-size: 14px;
-    opacity: 0.8;
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+
+    header {
+        padding: 14px 25px;
+    }
+
+    nav {
+        gap: 18px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .calculator-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero {
+        padding-top: 65px;
+    }
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 22px;
+
+@media (max-width: 650px) {
+
+    header {
+        padding: 14px 18px;
     }
-    
-    nav ul {
-        gap: 20px;
+
+    header nav {
+        display: none;
     }
-    
-    nav a {
-        font-size: 14px;
+
+    .hero {
+        padding: 50px 20px 55px;
     }
-    
-    .hero h2 {
-        font-size: 32px;
+
+    .hero h1 {
+        font-size: 40px;
+        letter-spacing: -1.5px;
     }
-    
+
     .hero p {
-        font-size: 16px;
+        font-size: 15px;
     }
-    
-    section h2 {
-        font-size: 28px;
+
+    .section,
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
     }
-    
-    .services-grid {
+
+    .cards,
+    .calculator-grid {
         grid-template-columns: 1fr;
     }
-    
-    .calculator-form,
-    .contact-form {
-        padding: 30px 20px;
+
+    .search {
+        flex-direction: column;
+    }
+
+    .search input {
+        border-right: 1px solid var(--gray-300);
+        border-radius: var(--radius-md);
+    }
+
+    .search button {
+        min-height: 46px;
+
+        margin-top: 8px;
+
+        border-radius: var(--radius-md);
+    }
+
+    .calculator {
+        padding: 22px;
     }
 }
